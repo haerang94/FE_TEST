@@ -4,6 +4,9 @@ import styled from 'styled-components';
 
 const InputField=styled(Field)`
     background:pink;
+    outline:none;
+    border:none;
+    border:1px solid black;
 `;
 
 let CountryForm = ({submit}) => {
