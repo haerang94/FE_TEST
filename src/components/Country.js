@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
-  background: linear-gradient(125deg, #fff 40%, #eff8ff 90%, #c9cbff);
+  background: linear-gradient(135deg, #fff 70%, #c6fced);
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 300px;
-  //   border: 1px solid #98acf8;
+  justify-content: space-evenly;
+  width: 300px;
   margin: 10px auto;
   padding: 20px;
   border-radius: 5px;
@@ -18,12 +18,14 @@ const Content = styled.div`
   width: 90%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
   & h2 {
     font-weight: bold;
   }
   & li {
     margin: 5px 0;
+    font-size: ${props => props.theme.size.sm};
   }
 `;
 
