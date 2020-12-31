@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Countries from 'components/Countries';
 import { getCountries } from 'modules/country';
@@ -15,6 +15,10 @@ const CountryContainer = () => {
     dispatch(getCountries());
   }, []);
 
+  const onSearch = ({ search }) => {
+    console.log('value', search);
+  };
+
   // if(loading)return
   if (error) return <div>에러 발생</div>;
   // if (!data) return null;
@@ -22,7 +26,7 @@ const CountryContainer = () => {
   return (
     <div>
       {loading && !data && <div>로딩 중</div>}
-      {data && <Countries countries={data} />}
+      {data && <Countries countries={data} onSearch={onSearch} />}
     </div>
   );
 };

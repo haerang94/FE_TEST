@@ -30,13 +30,13 @@ const Button = styled.button`
   background: #98acf8;
 `;
 
-const CountryForm = ({ handleSubmit }) => {
-  const submit = value => {
-    console.log('value', value);
-  };
-
+const CountryForm = ({ handleSubmit, onSearch }) => {
+  // const submit = ({ search }) => {
+  //   console.log('value', search);
+  // };
+  console.log(onSearch);
   return (
-    <Form onSubmit={handleSubmit(submit)}>
+    <Form onSubmit={handleSubmit(onSearch)}>
       <label htmlFor="search">
         <InputField id="search" name="search" component="input" type="text" />
       </label>
@@ -44,7 +44,6 @@ const CountryForm = ({ handleSubmit }) => {
     </Form>
   );
 };
-
 const WrappedForm = reduxForm({
   form: 'country',
 })(CountryForm);
