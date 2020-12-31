@@ -27,13 +27,33 @@ const CountryContainer = () => {
     }
   };
 
+  const onSort = keyword => {
+    if (!searchedData && data) {
+      const newCountries = data.sort((a, b) => {
+        if (a[keyword] < b[keyword]) return -1;
+        if (a[keyword] > b[keyword]) return 1;
+        return 0;
+      });
+      dispatch(setCountries(newCountries));
+    }
+
+    if (searchedData) {
+      const newCountries = searchedData.sort((a, b) => {
+        if (a[keyword] < b[keyword]) return -1;
+        if (a[keyword] > b[keyword]) return 1;
+        return 0;
+      });
+      dispatch(setCountries(newCountries));
+    }
+  };
+
   if (error) return <div>에러 발생</div>;
 
   return (
     <div>
       {loading && !data && <div>로딩 중</div>}
-      {!searchedData && data && <Countries countries={data} onSearch={onSearch} />}
-      {searchedData && <Countries countries={searchedData} onSearch={onSearch} />}
+      {!searchedData && data && <Countries countries={data} onSearch={onSearch} onSort={onSort} />}
+      {searchedData && <Countries countries={searchedData} onSearch={onSearch} onSort={onSort} />}
     </div>
   );
 };
