@@ -16,8 +16,6 @@ const CountryContainer = () => {
     dispatch(getCountries());
   }, []);
 
-  console.log(searchedData);
-
   const onSearch = ({ search }) => {
     // 검색어 없이 다시 검색하면 전체 데이터를 보여준다. searchedData는 null로 초기화한다
     if (!search) {
@@ -29,9 +27,7 @@ const CountryContainer = () => {
     }
   };
 
-  // if(loading)return
   if (error) return <div>에러 발생</div>;
-  // if (!data) return null;
 
   return (
     <div>
