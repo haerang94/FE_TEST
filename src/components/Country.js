@@ -12,7 +12,7 @@ const Card = styled.div`
   border-radius: 5px;
   box-shadow: 2px 2px 5px #c6fced;
   &:hover {
-    box-shadow: 2px 2px 5px #aca8ff;
+    box-shadow: 2px 2px 5px #aca8ff, -1px -1px 3px #c6fced;
     cursor: pointer;
   }
 `;

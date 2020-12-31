@@ -47,7 +47,9 @@ const CountryContainer = () => {
     };
   };
 
+  //   정렬 결과를 redux데이터에 저장하고 현재 정렬 키워드 오름/내림차순 상태 토글시키는 함수
   const handleUpdateAscending = (keyword, newCountries) => {
+    // 현재 키워드의 정렬 순서를 토글한 후 새로 정렬된 데이터 저장
     const newAscending = ascending;
     newAscending[keyword] = !ascending[keyword];
     setAscending(newAscending);
