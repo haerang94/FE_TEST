@@ -5,6 +5,9 @@ import { getCountriesApi } from "api/country";
 const GET_COUNTRIES = "GET_COUNTRIES";
 const GET_COUNTRIES_SUCCESS = "GET_COUNTRIES_SUCCESS";
 const GET_COUNTRIES_ERROR = "GET_COUNTRIES_ERROR";
+const SET_COUNTRIES = "SET_COUNTRIES";
+
+export const setCountries = newCountries => ({ type: SET_COUNTRIES, newCountries })
 
 // action 생성 함수, api 미들웨어
 export const getCountries = () => async(dispatch) => {
@@ -16,6 +19,9 @@ export const getCountries = () => async(dispatch) => {
         dispatch({ type: GET_COUNTRIES_ERROR, error: e });
     }
 };
+
+
+
 //  초기 countries 상태
 const initialState = {
     countries: {
@@ -23,6 +29,9 @@ const initialState = {
         data: null,
         error: null,
     },
+    searchedData: {
+        data: null
+    }
 };
 //  country reducer
 export default function country(state = initialState, action) {
@@ -54,6 +63,13 @@ export default function country(state = initialState, action) {
                     error: action.error,
                 },
             };
+        case SET_COUNTRIES:
+            return {
+                ...state,
+                searchedData: {
+                    data: action.newCountries,
+                }
+            }
 
         default:
             return state;
