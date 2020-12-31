@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -31,12 +31,13 @@ const Button = styled.button`
 `;
 
 const CountryForm = ({ handleSubmit, onSearch }) => {
-  // const submit = ({ search }) => {
-  //   console.log('value', search);
-  // };
-  console.log(onSearch);
+  const submit = (value, dispatch) => {
+    // submit 후 초기화
+    onSearch(value);
+    dispatch(reset('country'));
+  };
   return (
-    <Form onSubmit={handleSubmit(onSearch)}>
+    <Form onSubmit={handleSubmit(submit)}>
       <label htmlFor="search">
         <InputField id="search" name="search" component="input" type="text" />
       </label>
@@ -46,6 +47,7 @@ const CountryForm = ({ handleSubmit, onSearch }) => {
 };
 const WrappedForm = reduxForm({
   form: 'country',
+  enableReinitialize: true,
 })(CountryForm);
 
 export default WrappedForm;
