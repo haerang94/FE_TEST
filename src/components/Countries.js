@@ -39,7 +39,8 @@ const Countries = ({ countries }) => {
   };
   return (
     <Wrapper>
-      <Nav> FE TEST </Nav> <CountryForm onSubmit={submit}> </CountryForm>
+      <Nav> FE TEST </Nav>
+      <CountryForm onSubmit={submit}> </CountryForm>
       <CardContainer>
         {countries.map(country => (
           <Country key={country.name} country={country} />
