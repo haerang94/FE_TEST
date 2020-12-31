@@ -22,7 +22,7 @@ const Nav=styled.nav`
     background: linear-gradient(to right, #7579e7, #b9fffc);
 `;
 
-const Country = () => {
+const Country = ({countries}) => {
     const submit = (value) => {
         console.log(value);
     };
@@ -31,7 +31,20 @@ const Country = () => {
                 FE TEST
             </Nav>
             <CountryForm onSubmit = { submit } > </CountryForm>
+            {countries.map(country=>(
+                <div key={country.name}>
+                    <li>{country.name}</li>
+                    <li>{country.alpha2Code}</li>
+                    <li>{country.callingCodes[0]}</li>
+                    <li>{country.capital}</li>
+                    <li>{country.region}</li>
+                </div>
+            ))}
         </Wrapper>;
 };
+
+Country.defaultProps={
+    countries:[]
+}
 
 export default Country;

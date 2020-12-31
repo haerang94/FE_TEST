@@ -13,6 +13,7 @@ export const getCountries = () => async(dispatch) => {
         const countries = await getCountriesApi();
         dispatch({ type: GET_COUNTRIES_SUCCESS, countries });
     } catch (e) {
+        console.log(e);
         dispatch({ type: GET_COUNTRIES_ERROR, error: e });
     }
 };
