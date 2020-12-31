@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
-  //   background: linear-gradient(135deg, #fff 70%, #c6fced);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,11 +39,11 @@ const Country = ({ country }) => (
       <li> {country.name} </li>
     </Content>
     <Content>
-      <h2>alpha2코드</h2>
+      <h2>코드</h2>
       <li> {country.alpha2Code} </li>
     </Content>
     <Content>
-      <h2>calling코드</h2>
+      <h2>국가 전화번호</h2>
       <li> {country.callingCodes[0]} </li>
     </Content>
     <Content>
@@ -52,7 +51,7 @@ const Country = ({ country }) => (
       <li> {country.capital} </li>
     </Content>
     <Content>
-      <h2>지역</h2>
+      <h2>대륙</h2>
       <li> {country.region} </li>
     </Content>
   </Card>
