@@ -40,6 +40,16 @@ const CountryContainer = () => {
   //   정렬시 비교함수 (현재 정렬 키워드가 오름차순이면 내림차순 정렬, 내림차순이면 오름차순 정렬)
   const compareBy = keyword => {
     const isAscending = ascending[keyword];
+    // 숫자 비교시에는 숫자로 변환한 다음 비교한다. 문자열로 비교시 결과 다름
+    if (keyword === 'callingCodes') {
+      return (a, b) => {
+        const aa = +a[keyword][0];
+        const bb = +b[keyword][0];
+        if (aa < bb) return isAscending ? -1 : 1;
+        if (aa > bb) return isAscending ? 1 : -1;
+        return 0;
+      };
+    }
     return (a, b) => {
       if (a[keyword] < b[keyword]) return isAscending ? -1 : 1;
       if (a[keyword] > b[keyword]) return isAscending ? 1 : -1;
