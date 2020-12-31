@@ -1,19 +1,22 @@
-import { getCountries } from "api/country";
+import { getCountriesApi } from "api/country";
+
+//  actions
 
 const GET_COUNTRIES = "GET_COUNTRIES";
 const GET_COUNTRIES_SUCCESS = "GET_COUNTRIES_SUCCESS";
 const GET_COUNTRIES_ERROR = "GET_COUNTRIES_ERROR";
 
+// action 생성 함수, api 미들웨어
 export const getCountries = () => async(dispatch) => {
     dispatch({ type: GET_COUNTRIES });
     try {
-        const countries = await getCountries();
+        const countries = await getCountriesApi();
         dispatch({ type: GET_COUNTRIES_SUCCESS, countries });
     } catch (e) {
         dispatch({ type: GET_COUNTRIES_ERROR, error: e });
     }
 };
-
+//  초기 countries 상태
 const initialState = {
     countries: {
         loading: false,
@@ -21,8 +24,8 @@ const initialState = {
         error: null,
     },
 };
-
-export default function posts(state = initialState, action) {
+//  country reducer
+export default function country(state = initialState, action) {
     switch (action.type) {
         case GET_COUNTRIES:
             return {

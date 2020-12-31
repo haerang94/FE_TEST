@@ -5,6 +5,8 @@ import "styles/index.css";
 const GlobalStyle = createGlobalStyle `
     ${reset}
     *{
+        margin: 0;
+        padding: 0;
         box-sizing:border-box;
         outline:none;
         font-family: 'Noto Sans KR' , sans-serif !important;
