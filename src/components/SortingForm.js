@@ -26,9 +26,7 @@ const SortButton = styled.button`
   }
 `;
 
-const SortingForm = ({ onSort }) => {
-  console.log('?', onSort);
-  return (
+const SortingForm = ({ onSort }) => (
     <SortContainer>
       <SortButton onClick={() => onSort('name')}>이름</SortButton>
       <SortButton onClick={() => onSort('alpha2Code')}>코드</SortButton>
@@ -37,6 +35,5 @@ const SortingForm = ({ onSort }) => {
       <SortButton onClick={() => onSort('region')}>대륙</SortButton>
     </SortContainer>
   );
-};
 
 export default SortingForm;
