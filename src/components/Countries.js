@@ -26,6 +26,13 @@ const Nav = styled.nav`
   background: linear-gradient(to right, #7579e7, #b9fffc);
 `;
 
+const CardContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 20px;
+`;
+
 const Countries = ({ countries }) => {
   const submit = value => {
     console.log(value);
@@ -33,9 +40,11 @@ const Countries = ({ countries }) => {
   return (
     <Wrapper>
       <Nav> FE TEST </Nav> <CountryForm onSubmit={submit}> </CountryForm>
-      {countries.map(country => (
-        <Country key={country.name} country={country} />
-      ))}
+      <CardContainer>
+        {countries.map(country => (
+          <Country key={country.name} country={country} />
+        ))}
+      </CardContainer>
     </Wrapper>
   );
 };
