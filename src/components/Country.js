@@ -2,14 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
+  background: linear-gradient(125deg, #fff 40%, #eff8ff 90%, #c9cbff);
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 300px;
-  border: 1px solid black;
+  //   border: 1px solid #98acf8;
   margin: 10px auto;
   padding: 20px;
   border-radius: 5px;
+  box-shadow: 2px 2px 2px #ddd;
 `;
 
 const Content = styled.div`
