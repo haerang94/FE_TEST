@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import CountryForm from 'components/CountryForm';
+import Country from 'components/Country';
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 200vh;
+  min-height: 100vh;
   position: relative;
   background: linear-gradient(#fff, #f1f6f9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
+
 const Nav = styled.nav`
   top: 0;
   color: #fff;
@@ -27,13 +32,10 @@ const Countries = ({ countries }) => {
   };
   return (
     <Wrapper>
-      <Nav> FE TEST </Nav> <CountryForm onSubmit={submit}> </CountryForm>{' '}
+      <Nav> FE TEST </Nav> <CountryForm onSubmit={submit}> </CountryForm>
       {countries.map(country => (
-        <div key={country.name}>
-          <li> {country.name} </li> <li> {country.alpha2Code} </li> <li> {country.callingCodes[0]} </li>{' '}
-          <li> {country.capital} </li> <li> {country.region} </li>{' '}
-        </div>
-      ))}{' '}
+        <Country key={country.name} country={country} />
+      ))}
     </Wrapper>
   );
 };
