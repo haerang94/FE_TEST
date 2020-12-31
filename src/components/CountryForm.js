@@ -16,7 +16,7 @@ const Form = styled.form`
 
 const InputField = styled(Field)`
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #98acf8;
   width: 260px;
   padding: 7px;
   color: gray;
@@ -26,18 +26,15 @@ const Button = styled.button`
   border-radius: 6px;
   padding: 3px 5px;
   border: 2px solid #b088f9;
-  // border: none;
   color: #fff;
   background: #98acf8;
 `;
 
 const CountryForm = ({ submit }) => (
   <Form onSubmit={submit}>
-    <div>
-      <label htmlFor="search">
-        <InputField id="search" name="search" component="input" type="text" />
-      </label>
-    </div>
+    <label htmlFor="search">
+      <InputField id="search" name="search" component="input" type="text" />
+    </label>
     <Button type="submit">search</Button>
   </Form>
 );
