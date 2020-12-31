@@ -45,7 +45,7 @@ const SortButton = styled.button`
   box-shadow: 2px 2px 2px #98acf8;
   padding: 3px 8px;
   border-radius: 5px;
-  background: #e471a7;
+  background: #7579e7;
   color: #fcf8e8;
   border: none;
   &:hover {

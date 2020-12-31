@@ -25,9 +25,18 @@ const InputField = styled(Field)`
 const Button = styled.button`
   border-radius: 6px;
   padding: 3px 5px;
-  border: 2px solid #b088f9;
+  border: none;
   color: #fff;
-  background: #98acf8;
+  background: #8bdeff;
+  box-shadow: 2px 2px 2px #98acf8;
+  &:hover {
+    background: #26466f;
+    cursor: pointer;
+  }
+  &:active {
+    box-shadow: 1px 1px 2px #6155a6;
+    cursor: pointer;
+  }
 `;
 
 const CountryForm = ({ handleSubmit, onSearch }) => {
