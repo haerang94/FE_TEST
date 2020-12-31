@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import Country from "components/Country";
+import Countries from "components/Countries";
 import {getCountries} from 'modules/country';
 
 const CountryContainer = () => {
@@ -19,7 +19,7 @@ const CountryContainer = () => {
     return ( 
     <div >
         {loading &&!data&& <div>로딩 중</div>}
-        {data &&<Country countries={data} /> }
+        {data &&<Countries countries={data} /> }
     </div>
     );
 };
