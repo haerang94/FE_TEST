@@ -33,22 +33,17 @@ const CardContainer = styled.div`
   padding: 20px;
 `;
 
-const Countries = ({ countries }) => {
-  const submit = value => {
-    console.log(value);
-  };
-  return (
-    <Wrapper>
-      <Nav> FE TEST </Nav>
-      <CountryForm onSubmit={submit}> </CountryForm>
-      <CardContainer>
-        {countries.map(country => (
-          <Country key={country.name} country={country} />
-        ))}
-      </CardContainer>
-    </Wrapper>
-  );
-};
+const Countries = ({ countries }) => (
+  <Wrapper>
+    <Nav> FE TEST </Nav>
+    <CountryForm> </CountryForm>
+    <CardContainer>
+      {countries.map(country => (
+        <Country key={country.name} country={country} />
+      ))}
+    </CardContainer>
+  </Wrapper>
+);
 
 Countries.defaultProps = {
   countries: [],
