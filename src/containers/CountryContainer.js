@@ -1,7 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Countries from 'components/Countries';
-import { getCountries, setCountries, setSearchedData, setAscendingStatus } from 'modules/country';
+import {
+  getCountries,
+  setCountries,
+  setSearchedData,
+  setAscendingStatus,
+  deleteInitialData,
+  deleteSearchedData,
+} from 'modules/country';
 
 const CountryContainer = () => {
   // 정렬 상태
@@ -78,13 +85,11 @@ const CountryContainer = () => {
   const onDelete = name => {
     //   초기 데이터일 때
     if (!searchedData && data) {
-      const newCountries = data.filter(country => country.name !== name);
-      dispatch(setCountries(newCountries));
+      dispatch(deleteInitialData(name));
     }
     // 검색해서 나온 데이터일 때
     if (searchedData) {
-      const newCountries = searchedData.filter(country => country.name !== name);
-      dispatch(setSearchedData(newCountries));
+      dispatch(deleteSearchedData(name));
     }
   };
 

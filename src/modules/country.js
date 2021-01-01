@@ -7,6 +7,8 @@ const GET_COUNTRIES_SUCCESS = "GET_COUNTRIES_SUCCESS";
 const GET_COUNTRIES_ERROR = "GET_COUNTRIES_ERROR";
 const SET_COUNTRIES = "SET_COUNTRIES";
 const SET_SEARCHED_DATA = "SET_SEARCHED_DATA";
+const DELETE_INITIAL_DATA = "DELETE_INITIAL_DATA";
+const DELETE_SEARCHED_DATA = "DELETE_SEARCHED_DATA";
 
 // 정렬 관련 actions
 const SET_ASCENDING_STATUS = "SET_ASCENDING_STATUS";
@@ -32,6 +34,16 @@ export const setSearchedData = newCountries => ({
     type: SET_SEARCHED_DATA,
     newCountries
 });
+
+export const deleteInitialData = (name) => ({
+    type: DELETE_INITIAL_DATA,
+    name
+})
+
+export const deleteSearchedData = (name) => ({
+    type: DELETE_SEARCHED_DATA,
+    name
+})
 
 
 // 정렬 관련 액션 생성 함수
@@ -110,6 +122,20 @@ export default function country(state = initialState, action) {
             return {
                 ...state,
                 ascendingStatus: action.newAscendingStatus
+            }
+
+        case DELETE_INITIAL_DATA:
+            return {
+                ...state,
+                countries: {
+                    ...state.countries,
+                    data: state.countries.data.filter(country => country.name !== action.name)
+                }
+            }
+        case DELETE_SEARCHED_DATA:
+            return {
+                ...state,
+                searchedData: { data: state.searchedData.data.filter(country => country.name !== action.name) }
             }
 
         default:
