@@ -15,6 +15,7 @@ const SortButton = styled.button`
   border-radius: 5px;
   background: #7579e7;
   color: #fcf8e8;
+  font-size: ${props => props.theme.size.smd};
   border: none;
   &:hover {
     background: #6155a6;
@@ -26,14 +27,19 @@ const SortButton = styled.button`
   }
 `;
 
-const SortingForm = ({ onSort }) => (
-  <SortContainer>
-    <SortButton onClick={() => onSort('name')}>이름</SortButton>
-    <SortButton onClick={() => onSort('alpha2Code')}>코드</SortButton>
-    <SortButton onClick={() => onSort('callingCodes')}>국가 전화번호</SortButton>
-    <SortButton onClick={() => onSort('capital')}>수도</SortButton>
-    <SortButton onClick={() => onSort('region')}>대륙</SortButton>
-  </SortContainer>
-);
+const SortingForm = ({ onSort, ascendingStatus }) => {
+  const { name, alpha2Code, callingCodes, capital, region } = ascendingStatus;
+  return (
+    <SortContainer>
+      <SortButton onClick={() => onSort('name')}>이름{name ? ' (오름차순)' : '(내림차순)'}</SortButton>
+      <SortButton onClick={() => onSort('alpha2Code')}>코드{alpha2Code ? ' (오름차순)' : '(내림차순)'}</SortButton>
+      <SortButton onClick={() => onSort('callingCodes')}>
+        국가 전화번호{callingCodes ? ' (오름차순)' : '(내림차순)'}
+      </SortButton>
+      <SortButton onClick={() => onSort('capital')}>수도{capital ? ' (오름차순)' : '(내림차순)'}</SortButton>
+      <SortButton onClick={() => onSort('region')}>대륙{region ? ' (오름차순)' : '(내림차순)'}</SortButton>
+    </SortContainer>
+  );
+};
 
 export default SortingForm;

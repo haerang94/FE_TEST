@@ -4,17 +4,18 @@ import Countries from 'components/Countries';
 import { getCountries, setCountries, setAscendingStatus } from 'modules/country';
 
 const CountryContainer = () => {
+  // 정렬 상태
   const { ascendingStatus } = useSelector(state => state.country);
-
+  // 국가 정보
   const { data, loading, error } = useSelector(state => state.country.countries);
-
+  // 검색 정보 (검색 부분일치 필터링된 국가 정보)
   const { searchedData } = useSelector(state => ({
     searchedData: state.country.searchedData.data,
   }));
 
   const dispatch = useDispatch();
 
-  //  초기 데이터 불러오기
+  //  초기 국가 데이터 불러오기
   useEffect(() => {
     dispatch(getCountries());
   }, []);
@@ -79,8 +80,12 @@ const CountryContainer = () => {
   return (
     <div>
       {loading && !data && <div>로딩 중</div>}
-      {!searchedData && data && <Countries countries={data} onSearch={onSearch} onSort={onSort} />}
-      {searchedData && <Countries countries={searchedData} onSearch={onSearch} onSort={onSort} />}
+      {!searchedData && data && (
+        <Countries countries={data} onSearch={onSearch} onSort={onSort} ascendingStatus={ascendingStatus} />
+      )}
+      {searchedData && (
+        <Countries countries={searchedData} onSearch={onSearch} onSort={onSort} ascendingStatus={ascendingStatus} />
+      )}
     </div>
   );
 };
