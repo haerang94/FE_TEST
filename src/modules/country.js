@@ -6,6 +6,7 @@ const GET_COUNTRIES = "GET_COUNTRIES";
 const GET_COUNTRIES_SUCCESS = "GET_COUNTRIES_SUCCESS";
 const GET_COUNTRIES_ERROR = "GET_COUNTRIES_ERROR";
 const SET_COUNTRIES = "SET_COUNTRIES";
+const SET_SEARCHED_DATA = "SET_SEARCHED_DATA";
 
 // 정렬 관련 actions
 const SET_ASCENDING_STATUS = "SET_ASCENDING_STATUS";
@@ -25,7 +26,12 @@ export const getCountries = () => async(dispatch) => {
 export const setCountries = newCountries => ({
     type: SET_COUNTRIES,
     newCountries
-})
+});
+
+export const setSearchedData = newCountries => ({
+    type: SET_SEARCHED_DATA,
+    newCountries
+});
 
 
 // 정렬 관련 액션 생성 함수
@@ -85,6 +91,15 @@ export default function country(state = initialState, action) {
                 },
             };
         case SET_COUNTRIES:
+            return {
+                ...state,
+                countries: {
+                    loading: false,
+                    error: null,
+                    data: action.newCountries
+                }
+            }
+        case SET_SEARCHED_DATA:
             return {
                 ...state,
                 searchedData: {

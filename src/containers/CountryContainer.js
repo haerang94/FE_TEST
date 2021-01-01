@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Countries from 'components/Countries';
-import { getCountries, setCountries, setAscendingStatus } from 'modules/country';
+import { getCountries, setCountries, setSearchedData, setAscendingStatus } from 'modules/country';
 
 const CountryContainer = () => {
   // 정렬 상태
@@ -24,11 +24,11 @@ const CountryContainer = () => {
   const onSearch = ({ search }) => {
     // 검색어 없이 다시 검색하면 전체 데이터를 보여준다. searchedData는 null로 초기화한다
     if (!search) {
-      dispatch(setCountries(null));
+      dispatch(setSearchedData(null));
     } else {
       // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다
       const newCountries = data.filter(country => country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
-      dispatch(setCountries(newCountries));
+      dispatch(setSearchedData(newCountries));
     }
   };
 
@@ -84,7 +84,23 @@ const CountryContainer = () => {
     // 검색해서 나온 데이터일 때
     if (searchedData) {
       const newCountries = searchedData.filter(country => country.name !== name);
+      dispatch(setSearchedData(newCountries));
+    }
+  };
+
+  const onAdd = value => {
+    console.log(value);
+    //   초기 데이터일 때
+    if (!searchedData && data) {
+      const newCountries = data;
+      newCountries.unshift(value);
       dispatch(setCountries(newCountries));
+    }
+    // 검색해서 나온 데이터일 때
+    if (searchedData) {
+      const newCountries = searchedData;
+      newCountries.unshift(value);
+      dispatch(setSearchedData(newCountries));
     }
   };
 
@@ -100,6 +116,7 @@ const CountryContainer = () => {
           onSort={onSort}
           ascendingStatus={ascendingStatus}
           onDelete={onDelete}
+          onAdd={onAdd}
         />
       )}
       {searchedData && (
@@ -109,6 +126,7 @@ const CountryContainer = () => {
           onSort={onSort}
           ascendingStatus={ascendingStatus}
           onDelete={onDelete}
+          onAdd={onAdd}
         />
       )}
     </div>

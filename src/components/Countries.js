@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import CountryForm from 'components/CountryForm';
+import SearchForm from 'components/SearchForm';
 import Country from 'components/Country';
 import SortingForm from 'components/SortingForm';
+import AddForm from 'components/AddForm';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,10 +35,11 @@ const CardContainer = styled.div`
   padding: 20px;
 `;
 
-const Countries = ({ countries, onSearch, onSort, ascendingStatus, onDelete }) => (
+const Countries = ({ countries, onSearch, onSort, ascendingStatus, onDelete, onAdd }) => (
   <Wrapper>
     <Nav> FE TEST </Nav>
-    <CountryForm onSearch={onSearch} />
+    <AddForm onAdd={onAdd}></AddForm>
+    <SearchForm onSearch={onSearch} />
     <SortingForm onSort={onSort} ascendingStatus={ascendingStatus} />
     <CardContainer>
       {countries.map(country => (
