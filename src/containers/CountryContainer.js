@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Countries from 'components/Countries';
-import { getCountries, setCountries } from 'modules/country';
+import { getCountries, setCountries, setAscendingStatus } from 'modules/country';
 
 const CountryContainer = () => {
-  const [ascending, setAscending] = useState({
-    name: true,
-    alpha2Code: true,
-    callingCodes: true,
-    capital: true,
-    region: true,
-  });
+  const { ascendingStatus } = useSelector(state => state.country);
 
-  const { data, loading, error, searchedData } = useSelector(state => ({
-    data: state.country.countries.data,
-    loading: state.country.countries.loading,
-    error: state.country.countries.error,
+  const { data, loading, error } = useSelector(state => state.country.countries);
+
+  const { searchedData } = useSelector(state => ({
     searchedData: state.country.searchedData.data,
   }));
+
   const dispatch = useDispatch();
 
   //  초기 데이터 불러오기
@@ -39,7 +33,7 @@ const CountryContainer = () => {
 
   //   정렬시 비교함수 (현재 정렬 키워드가 오름차순이면 내림차순 정렬, 내림차순이면 오름차순 정렬)
   const compareBy = keyword => {
-    const isAscending = ascending[keyword];
+    const isAscending = ascendingStatus[keyword];
     // 숫자 비교시에는 숫자로 변환한 다음 비교한다. 문자열로 비교시 결과 다름
     if (keyword === 'callingCodes') {
       return (a, b) => {
@@ -60,9 +54,9 @@ const CountryContainer = () => {
   //   정렬 결과를 redux데이터에 저장하고 현재 정렬 키워드 오름/내림차순 상태 토글시키는 함수
   const handleUpdateAscending = (keyword, newCountries) => {
     // 현재 키워드의 정렬 순서를 토글한 후 새로 정렬된 데이터 저장
-    const newAscending = ascending;
-    newAscending[keyword] = !ascending[keyword];
-    setAscending(newAscending);
+    const newAscendingStatus = ascendingStatus;
+    newAscendingStatus[keyword] = !ascendingStatus[keyword];
+    dispatch(setAscendingStatus(newAscendingStatus));
     dispatch(setCountries(newCountries));
   };
 
@@ -76,7 +70,6 @@ const CountryContainer = () => {
     // 검색해서 나온 데이터일 때
     if (searchedData) {
       const newCountries = searchedData.sort(compareBy(keyword));
-      setAscending(state => ({ ...state, keyword: !ascending[keyword] }));
       handleUpdateAscending(keyword, newCountries);
     }
   };

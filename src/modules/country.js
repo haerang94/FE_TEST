@@ -7,7 +7,9 @@ const GET_COUNTRIES_SUCCESS = "GET_COUNTRIES_SUCCESS";
 const GET_COUNTRIES_ERROR = "GET_COUNTRIES_ERROR";
 const SET_COUNTRIES = "SET_COUNTRIES";
 
-export const setCountries = newCountries => ({ type: SET_COUNTRIES, newCountries })
+// 정렬 관련 actions
+const SET_ASCENDING_STATUS = "SET_ASCENDING_STATUS";
+
 
 // action 생성 함수, api 미들웨어
 export const getCountries = () => async(dispatch) => {
@@ -20,6 +22,18 @@ export const getCountries = () => async(dispatch) => {
     }
 };
 
+export const setCountries = newCountries => ({
+    type: SET_COUNTRIES,
+    newCountries
+})
+
+
+// 정렬 관련 액션 생성 함수
+
+export const setAscendingStatus = newAscendingStatus => ({
+    type: SET_ASCENDING_STATUS,
+    newAscendingStatus
+})
 
 
 //  초기 countries 상태
@@ -31,6 +45,13 @@ const initialState = {
     },
     searchedData: {
         data: null
+    },
+    ascendingStatus: {
+        name: true,
+        alpha2Code: true,
+        callingCodes: true,
+        capital: true,
+        region: true,
     }
 };
 //  country reducer
@@ -69,6 +90,11 @@ export default function country(state = initialState, action) {
                 searchedData: {
                     data: action.newCountries,
                 }
+            }
+        case SET_ASCENDING_STATUS:
+            return {
+                ...state,
+                ascendingStatus: action.newAscendingStatus
             }
 
         default:
