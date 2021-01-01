@@ -9,6 +9,7 @@ const SET_COUNTRIES = "SET_COUNTRIES";
 const SET_SEARCHED_DATA = "SET_SEARCHED_DATA";
 const DELETE_INITIAL_DATA = "DELETE_INITIAL_DATA";
 const DELETE_SEARCHED_DATA = "DELETE_SEARCHED_DATA";
+const SET_KEYWORD = "SET_KEYWORD";
 
 // 정렬 관련 actions
 const SET_ASCENDING_STATUS = "SET_ASCENDING_STATUS";
@@ -45,6 +46,8 @@ export const deleteSearchedData = (name) => ({
     name
 })
 
+export const setKeyword = (keyword) => ({ type: SET_KEYWORD, keyword })
+
 
 // 정렬 관련 액션 생성 함수
 
@@ -70,7 +73,8 @@ const initialState = {
         callingCodes: true,
         capital: true,
         region: true,
-    }
+    },
+    keyword: null
 };
 //  country reducer
 export default function country(state = initialState, action) {
@@ -136,6 +140,11 @@ export default function country(state = initialState, action) {
             return {
                 ...state,
                 searchedData: { data: state.searchedData.data.filter(country => country.name !== action.name) }
+            }
+        case SET_KEYWORD:
+            return {
+                ...state,
+                keyword: action.keyword
             }
 
         default:
