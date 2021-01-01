@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { reduxForm, reset } from 'redux-form';
+import { reduxForm, reset, change } from 'redux-form';
 import styled from 'styled-components';
 import { InputField, Button } from 'components/sharedComponents';
 import { debounce } from 'lodash';
@@ -16,10 +16,8 @@ const Form = styled.form`
   }
 `;
 
-const SearchForm = ({ handleSubmit, onSearch, onChange, keyword }) => {
-  console.log('searchkeyword', keyword);
+const SearchForm = ({ handleSubmit, onSearch }) => {
   const debouncedChange = debounce(value => {
-    console.log('debounce', value);
     onSearch({ search: value });
   }, 200);
 
