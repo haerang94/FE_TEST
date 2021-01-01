@@ -29,6 +29,7 @@ const SortButton = styled.button`
 
 const SortingForm = ({ onSort, ascendingStatus }) => {
   const { name, alpha2Code, callingCodes, capital, region } = ascendingStatus;
+
   return (
     <SortContainer>
       <SortButton onClick={() => onSort('name')}>이름{name ? ' (오름차순)' : '(내림차순)'}</SortButton>

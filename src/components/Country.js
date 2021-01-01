@@ -1,11 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { WindowClose } from '@styled-icons/fa-regular/WindowClose';
+
+const CloseBtn = styled(WindowClose)`
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
+  margin-bottom: 10px;
+`;
 
 const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 300px;
   margin: 10px auto;
   padding: 20px;
@@ -18,7 +26,7 @@ const Card = styled.div`
 `;
 
 const Content = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -34,6 +42,7 @@ const Content = styled.div`
 
 const Country = ({ country }) => (
   <Card key={country.name}>
+    <CloseBtn />
     <Content>
       <h2>이름</h2>
       <li> {country.name} </li>

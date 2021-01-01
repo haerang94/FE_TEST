@@ -45,6 +45,7 @@
 
     // ❗️error off : 0 , warning 1,❗️
   },
+  "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
   //절대 경로 import 이해시키기
   "settings": {
     "import/resolver": {
