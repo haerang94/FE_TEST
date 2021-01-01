@@ -34,14 +34,14 @@ const CardContainer = styled.div`
   padding: 20px;
 `;
 
-const Countries = ({ countries, onSearch, onSort, ascendingStatus }) => (
+const Countries = ({ countries, onSearch, onSort, ascendingStatus, onDelete }) => (
   <Wrapper>
     <Nav> FE TEST </Nav>
     <CountryForm onSearch={onSearch} />
     <SortingForm onSort={onSort} ascendingStatus={ascendingStatus} />
     <CardContainer>
       {countries.map(country => (
-        <Country key={country.name} country={country} />
+        <Country key={country.name} country={country} onDelete={onDelete} />
       ))}
     </CardContainer>
   </Wrapper>

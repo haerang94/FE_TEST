@@ -7,6 +7,11 @@ const CloseBtn = styled(WindowClose)`
   height: 15px;
   margin-left: auto;
   margin-bottom: 10px;
+  &:hover,
+  &:active {
+    cursor: pointer;
+    color: #9088d4;
+  }
 `;
 
 const Card = styled.div`
@@ -40,30 +45,36 @@ const Content = styled.div`
   }
 `;
 
-const Country = ({ country }) => (
-  <Card key={country.name}>
-    <CloseBtn />
-    <Content>
-      <h2>이름</h2>
-      <li> {country.name} </li>
-    </Content>
-    <Content>
-      <h2>코드</h2>
-      <li> {country.alpha2Code} </li>
-    </Content>
-    <Content>
-      <h2>국가 전화번호</h2>
-      <li> {country.callingCodes[0]} </li>
-    </Content>
-    <Content>
-      <h2>수도</h2>
-      <li> {country.capital} </li>
-    </Content>
-    <Content>
-      <h2>대륙</h2>
-      <li> {country.region} </li>
-    </Content>
-  </Card>
-);
+const Country = ({ country, onDelete }) => {
+  const handleDelete = () => {
+    onDelete(country.name);
+  };
+
+  return (
+    <Card key={country.name}>
+      <CloseBtn onClick={handleDelete} />
+      <Content>
+        <h2>이름</h2>
+        <li> {country.name} </li>
+      </Content>
+      <Content>
+        <h2>코드</h2>
+        <li> {country.alpha2Code} </li>
+      </Content>
+      <Content>
+        <h2>국가 전화번호</h2>
+        <li> {country.callingCodes[0]} </li>
+      </Content>
+      <Content>
+        <h2>수도</h2>
+        <li> {country.capital} </li>
+      </Content>
+      <Content>
+        <h2>대륙</h2>
+        <li> {country.region} </li>
+      </Content>
+    </Card>
+  );
+};
 
 export default Country;

@@ -75,16 +75,42 @@ const CountryContainer = () => {
     }
   };
 
+  const onDelete = name => {
+    console.log(name);
+    //   초기 데이터일 때
+    if (!searchedData && data) {
+      const newCountries = data.filter(country => country.name !== name);
+      dispatch(setCountries(newCountries));
+    }
+    // 검색해서 나온 데이터일 때
+    if (searchedData) {
+      const newCountries = searchedData.filter(country => country.name !== name);
+      dispatch(setCountries(newCountries));
+    }
+  };
+
   if (error) return <div>에러 발생</div>;
 
   return (
     <div>
       {loading && !data && <div>로딩 중</div>}
       {!searchedData && data && (
-        <Countries countries={data} onSearch={onSearch} onSort={onSort} ascendingStatus={ascendingStatus} />
+        <Countries
+          countries={data}
+          onSearch={onSearch}
+          onSort={onSort}
+          ascendingStatus={ascendingStatus}
+          onDelete={onDelete}
+        />
       )}
       {searchedData && (
-        <Countries countries={searchedData} onSearch={onSearch} onSort={onSort} ascendingStatus={ascendingStatus} />
+        <Countries
+          countries={searchedData}
+          onSearch={onSearch}
+          onSort={onSort}
+          ascendingStatus={ascendingStatus}
+          onDelete={onDelete}
+        />
       )}
     </div>
   );
