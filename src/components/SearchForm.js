@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Field, reduxForm, reset } from 'redux-form';
 import styled from 'styled-components';
 
@@ -39,24 +39,24 @@ const Button = styled.button`
   }
 `;
 
-const CountryForm = ({ handleSubmit, onSearch }) => {
-  const submit = (value, dispatch) => {
+const SearchForm = ({ handleSubmit, onSearch }) => {
+  const submit = useCallback((value, dispatch) => {
     // submit 후 초기화
     onSearch(value);
-    dispatch(reset('country'));
-  };
+    dispatch(reset('searchForm'));
+  }, []);
   return (
     <Form onSubmit={handleSubmit(submit)}>
       <label htmlFor="search">
         <InputField id="search" name="search" component="input" type="text" />
       </label>
-      <Button type="submit">search</Button>
+      <Button type="submit"> search </Button>
     </Form>
   );
 };
 const WrappedForm = reduxForm({
-  form: 'country',
+  form: 'searchForm',
   enableReinitialize: true,
-})(CountryForm);
+})(SearchForm);
 
 export default WrappedForm;

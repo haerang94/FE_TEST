@@ -76,7 +76,6 @@ const CountryContainer = () => {
   };
 
   const onDelete = name => {
-    console.log(name);
     //   초기 데이터일 때
     if (!searchedData && data) {
       const newCountries = data.filter(country => country.name !== name);

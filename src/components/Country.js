@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { WindowClose } from '@styled-icons/fa-regular/WindowClose';
 
@@ -46,9 +46,9 @@ const Content = styled.div`
 `;
 
 const Country = ({ country, onDelete }) => {
-  const handleDelete = () => {
+  const handleDelete = useCallback(() => {
     onDelete(country.name);
-  };
+  }, []);
 
   return (
     <Card key={country.name}>
