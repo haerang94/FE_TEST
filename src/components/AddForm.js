@@ -19,33 +19,32 @@ const Form = styled.form`
 `;
 
 const AddForm = ({ handleSubmit, onAdd }) => {
-  const handleAdd = useCallback((value, dispatch) => {
-    onAdd(value);
-    dispatch(reset('addForm'));
-  }, []);
+  const handleAdd = useCallback(
+    (value, dispatch) => {
+      onAdd(value);
+      dispatch(reset('addForm'));
+    },
+    [onAdd],
+  );
   return (
     <Form onSubmit={handleSubmit(handleAdd)}>
       <div>
-        <label htmlFor="name">이름</label>
-        <InputField name="name" component="input" type="text" />
+        <label htmlFor="name"> 이름 </label> <InputField name="name" component="input" type="text" />
       </div>
       <div>
-        <label htmlFor="alpha2Code">코드</label>
-        <InputField name="alpha2Code" component="input" type="text" />
+        <label htmlFor="alpha2Code"> 코드 </label> <InputField name="alpha2Code" component="input" type="text" />
       </div>
       <div>
-        <label htmlFor="callingCodes">국가 전화번호</label>
+        <label htmlFor="callingCodes"> 국가 전화번호 </label>
         <InputField name="callingCodes" component="input" type="text" />
       </div>
       <div>
-        <label htmlFor="capital">수도</label>
-        <InputField name="capital" component="input" type="text" />
+        <label htmlFor="capital"> 수도 </label> <InputField name="capital" component="input" type="text" />
       </div>
       <div>
-        <label htmlFor="region">대륙</label>
-        <InputField name="region" component="input" type="text" />
+        <label htmlFor="region"> 대륙 </label> <InputField name="region" component="input" type="text" />
       </div>
-      <Button type="submit">나라 추가</Button>
+      <Button type="submit"> 나라 추가 </Button>
     </Form>
   );
 };

@@ -25,11 +25,14 @@ const SearchForm = ({ handleSubmit, onSearch }) => {
     if (!newValue) return;
     debouncedChange(newValue);
   };
-  const submit = useCallback((value, dispatch) => {
-    // submit 후 초기화
-    onSearch(value);
-    dispatch(reset('searchForm'));
-  }, []);
+  const submit = useCallback(
+    (value, dispatch) => {
+      // submit 후 초기화
+      onSearch(value);
+      dispatch(reset('searchForm'));
+    },
+    [onSearch],
+  );
   return (
     <Form onSubmit={handleSubmit(submit)}>
       <label htmlFor="search">

@@ -6,6 +6,8 @@ const GET_COUNTRIES = "GET_COUNTRIES";
 const GET_COUNTRIES_SUCCESS = "GET_COUNTRIES_SUCCESS";
 const GET_COUNTRIES_ERROR = "GET_COUNTRIES_ERROR";
 const SET_COUNTRIES = "SET_COUNTRIES";
+const ADD_COUNTRIES = "ADD_COUNTRIES";
+const ADD_SEARCHED_DATA = "ADD_SEARCHED_DATA";
 const SET_SEARCHED_DATA = "SET_SEARCHED_DATA";
 const DELETE_INITIAL_DATA = "DELETE_INITIAL_DATA";
 const DELETE_SEARCHED_DATA = "DELETE_SEARCHED_DATA";
@@ -29,6 +31,8 @@ export const getCountries = () => async(dispatch) => {
     }
 };
 
+export const addCountries = (newCountry) => ({ type: ADD_COUNTRIES, newCountry });
+export const addSearchedData = (newCountry) => ({ type: ADD_SEARCHED_DATA, newCountry });
 
 export const toggleFetching = () => ({ type: SET_FETCHING });
 
@@ -139,11 +143,27 @@ export default function country(state = initialState, action) {
                     data: action.newCountries
                 }
             }
+        case ADD_COUNTRIES:
+            return {
+                ...state,
+                countries: {
+                    ...state.countries,
+                    data: [...state.countries, action.newCountry]
+                }
+            }
         case SET_SEARCHED_DATA:
             return {
                 ...state,
                 searchedData: {
                     data: action.newCountries,
+                }
+            }
+        case ADD_SEARCHED_DATA:
+            return {
+                ...state,
+                searchedData: {
+                    ...state.searchedData,
+                    data: [...state.searchedData, action.newCountry]
                 }
             }
         case SET_ASCENDING_STATUS:
