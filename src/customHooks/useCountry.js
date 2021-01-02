@@ -39,6 +39,8 @@ function useCountry() {
         dispatch(setCountries(newCountries));
         if (searchedData) {
             if (value.name.toLowerCase().indexOf(keyword) !== -1) {
+                const newCountries = searchedData;
+                newCountries.unshift(value);
                 dispatch(setSearchedData(newCountries));
             }
         }
