@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import {
     getCountries,
     setCountries,
@@ -22,6 +23,11 @@ function useCountry() {
     }));
 
     const dispatch = useDispatch();
+
+    //  초기 국가 데이터 불러오기
+    useEffect(() => {
+        dispatch(getCountries());
+    }, []);
 
     //   검색했을 때
     const onSearch = ({ search }) => {
