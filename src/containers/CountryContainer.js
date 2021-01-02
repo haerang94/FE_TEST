@@ -11,17 +11,15 @@ const CountryContainer = () => {
 
   if (error) return <div>에러 발생</div>;
   return (
-    <div>
-      <Countries
-        data={slicedData}
-        onSearch={onSearch}
-        onSort={onSort}
-        ascendingStatus={ascendingStatus}
-        onDelete={onDelete}
-        onAdd={onAdd}
-        loading={loading}
-      />
-    </div>
+    <Countries
+      data={slicedData}
+      onSearch={onSearch}
+      onSort={onSort}
+      ascendingStatus={ascendingStatus}
+      onDelete={onDelete}
+      onAdd={onAdd}
+      loading={loading}
+    />
   );
 };
 

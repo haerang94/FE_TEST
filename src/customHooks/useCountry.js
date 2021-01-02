@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import {
     getCountries,
     setCountries,
@@ -9,7 +9,6 @@ import {
     deleteSearchedData,
     setKeyword,
     updatePage,
-
 } from 'modules/country';
 
 function useCountry() {

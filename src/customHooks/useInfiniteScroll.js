@@ -28,7 +28,6 @@ function useInfiniteScroll() {
             window.removeEventListener("scroll", handleScroll);
         };
     });
-    return { fetching };
 }
 
 export default useInfiniteScroll;

@@ -158,20 +158,6 @@ export default function country(state = initialState, action) {
                 }
             }
 
-        case SET_SEARCHED_DATA:
-            return {
-                ...state,
-                searchedData: {
-                    data: action.newCountries,
-                }
-            }
-
-        case SET_ASCENDING_STATUS:
-            return {
-                ...state,
-                ascendingStatus: action.newAscendingStatus
-            }
-
         case DELETE_INITIAL_DATA:
             return {
                 ...state,
@@ -180,6 +166,22 @@ export default function country(state = initialState, action) {
                     data: state.countries.data.filter(country => country.name !== action.name)
                 }
             }
+
+
+
+        case SET_ASCENDING_STATUS:
+            return {
+                ...state,
+                ascendingStatus: action.newAscendingStatus
+            }
+        case SET_SEARCHED_DATA:
+            return {
+                ...state,
+                searchedData: {
+                    data: action.newCountries,
+                }
+            }
+
         case DELETE_SEARCHED_DATA:
             return {
                 ...state,
