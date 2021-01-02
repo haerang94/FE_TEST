@@ -8,6 +8,7 @@ import {
     deleteInitialData,
     deleteSearchedData,
     setKeyword,
+    updatePage
 } from 'modules/country';
 
 function useCountry() {
@@ -34,11 +35,14 @@ function useCountry() {
         // 검색어 없이 다시 검색하면 전체 데이터를 보여준다. searchedData는 null로 초기화한다
 
         if (!search) {
+            dispatch(updatePage(8));
             dispatch(setSearchedData(null));
         } else if (keyword) {
             // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다
             const newCountries = data.filter(country => country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
             dispatch(setSearchedData(newCountries));
+            dispatch(updatePage(8));
+
         }
         dispatch(setKeyword(search));
     };

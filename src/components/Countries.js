@@ -30,23 +30,28 @@ const Nav = styled.nav`
 
 const CardContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   flex-wrap: wrap;
   padding: 20px;
 `;
 
-const Countries = ({ data, onSearch, onSort, ascendingStatus, onDelete, onAdd }) => {
+const Countries = ({ data, onSearch, onSort, ascendingStatus, onDelete, onAdd, loading }) => {
   return (
     <Wrapper>
       <Nav> FE TEST </Nav>
       <AddForm onAdd={onAdd}></AddForm>
       <SearchForm onSearch={onSearch} />
       <SortingForm onSort={onSort} ascendingStatus={ascendingStatus} />
-      <CardContainer>
-        {data.map(country => (
-          <Country key={country.name} country={country} onDelete={onDelete} />
-        ))}
-      </CardContainer>
+      {!loading && (
+        <CardContainer>
+          {data.map(country => (
+            <Country key={country.name} country={country} onDelete={onDelete} />
+          ))}
+        </CardContainer>
+      )}
+      {loading && <CardContainer>로딩중...</CardContainer>}
     </Wrapper>
   );
 };

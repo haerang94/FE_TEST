@@ -30,6 +30,11 @@ export const getCountries = () => async(dispatch) => {
 
 export const toggleFetching = () => ({ type: TOGGLE_FETCHING });
 
+export const updatePage = (newpage) => ({
+    type: UPDATE_PAGE,
+    newpage
+})
+
 export const setCountries = newCountries => ({
     type: SET_COUNTRIES,
     newCountries
@@ -100,7 +105,7 @@ export default function country(state = initialState, action) {
             return {
                 ...state,
                 countries: {
-                    loading: true,
+                    loading: false,
                     data: action.countries,
                     error: null,
                 },
@@ -109,7 +114,7 @@ export default function country(state = initialState, action) {
             return {
                 ...state,
                 countries: {
-                    loading: true,
+                    loading: false,
                     data: null,
                     error: action.error,
                 },
@@ -158,6 +163,11 @@ export default function country(state = initialState, action) {
             return {
                 ...state,
                 fetching: !state.fetching
+            }
+        case UPDATE_PAGE:
+            return {
+                ...state,
+                page: action.newpage
             }
 
         default:
