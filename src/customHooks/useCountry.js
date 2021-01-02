@@ -51,16 +51,22 @@ function useCountry() {
     //   검색했을 때
     const onSearch = ({ search }) => {
         // 검색어 없이 다시 검색하면 전체 데이터를 보여준다. searchedData는 null로 초기화한다
+        console.log(data, searchedData)
+        console.log(search)
         if (!search) {
+            console.log(search)
             dispatch(updatePage(8));
             dispatch(setSearchedData(null));
         } else if (keyword && data) {
-            // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다
+            console.log(keyword, data)
+                // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다
             const newCountries = data.filter(country => country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
             dispatch(setSearchedData(newCountries));
             dispatch(updatePage(8));
+        } else {
+            dispatch(setKeyword(search.toLowerCase()));
         }
-        dispatch(setKeyword(search.toLowerCase()));
+
     };
 
     //   정렬시 비교함수 (현재 정렬 키워드가 오름차순이면 내림차순 정렬, 내림차순이면 오름차순 정렬)
@@ -85,12 +91,12 @@ function useCountry() {
     };
 
     //   정렬 결과를 redux데이터에 저장하고 현재 정렬 키워드 오름/내림차순 상태 토글시키는 함수
-    const handleUpdateAscending = (keyword, newCountries) => {
+    const handleUpdateAscending = (keyword) => {
         // 현재 키워드의 정렬 순서를 토글한 후 새로 정렬된 데이터 저장
         const newAscendingStatus = ascendingStatus;
         newAscendingStatus[keyword] = !ascendingStatus[keyword];
         dispatch(setAscendingStatus(newAscendingStatus));
-        dispatch(setCountries(newCountries));
+
     };
 
     //   정렬 함수
@@ -100,11 +106,13 @@ function useCountry() {
         if (!searchedData && data) {
             const newCountries = data.sort(compareBy(keyword));
             handleUpdateAscending(keyword, newCountries);
+            dispatch(setCountries(newCountries));
         }
         // 검색해서 나온 데이터일 때
         if (searchedData) {
             const newCountries = searchedData.sort(compareBy(keyword));
             handleUpdateAscending(keyword, newCountries);
+            dispatch(setSearchedData(newCountries))
         }
     };
 
