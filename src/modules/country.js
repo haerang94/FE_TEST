@@ -10,7 +10,8 @@ const SET_SEARCHED_DATA = "SET_SEARCHED_DATA";
 const DELETE_INITIAL_DATA = "DELETE_INITIAL_DATA";
 const DELETE_SEARCHED_DATA = "DELETE_SEARCHED_DATA";
 const SET_KEYWORD = "SET_KEYWORD";
-const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+const START_FETCHING = 'START_FETCHING';
+const STOP_FETCHING = "STOP_FETCHING";
 const UPDATE_PAGE = "UPDATE_PAGE";
 
 // 정렬 관련 actions
@@ -28,7 +29,8 @@ export const getCountries = () => async(dispatch) => {
     }
 };
 
-export const toggleFetching = () => ({ type: TOGGLE_FETCHING });
+
+export const toggleFetching = () => ({ type: SET_FETCHING });
 
 export const updatePage = (newpage) => ({
     type: UPDATE_PAGE,
@@ -56,6 +58,15 @@ export const deleteSearchedData = (name) => ({
 })
 
 export const setKeyword = (keyword) => ({ type: SET_KEYWORD, keyword })
+
+export const fetchingNextData = (newpage) => (dispatch) => {
+    dispatch({ type: START_FETCHING });
+
+    return Promise.resolve(dispatch(updatePage(newpage))).then(
+        () => dispatch({ type: STOP_FETCHING })
+    )
+
+}
 
 
 // 정렬 관련 액션 생성 함수
@@ -159,10 +170,23 @@ export default function country(state = initialState, action) {
                 ...state,
                 keyword: action.keyword
             }
-        case TOGGLE_FETCHING:
+        case START_FETCHING:
             return {
                 ...state,
-                fetching: !state.fetching
+                fetching: true,
+                countries: {
+                    ...state.countries,
+                    loading: true
+                }
+            }
+        case STOP_FETCHING:
+            return {
+                ...state,
+                fetching: false,
+                countries: {
+                    ...state.countries,
+                    loading: false
+                }
             }
         case UPDATE_PAGE:
             return {

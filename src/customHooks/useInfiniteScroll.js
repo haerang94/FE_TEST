@@ -1,16 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { toggleFetching, updatePage } from 'modules/country';
+import { toggleFetching, updatePage, fetchingNextData } from 'modules/country';
 
 function useInfiniteScroll() {
 
     const { fetching, page } = useSelector(state => state.country);
     const dispatch = useDispatch();
     const fetchMoreData = () => {
-        console.log('fetchmoredata')
-        dispatch(toggleFetching());
-        dispatch(updatePage(page + 8));
-        dispatch(toggleFetching());
+        dispatch(fetchingNextData(page + 8))
     }
 
     const handleScroll = () => {
@@ -23,7 +20,7 @@ function useInfiniteScroll() {
             fetchMoreData();
         }
     };
-
+    console.log('fetching', fetching)
     useEffect(() => {
         // scroll event listener 등록
         window.addEventListener("scroll", handleScroll);
