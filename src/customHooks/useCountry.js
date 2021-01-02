@@ -9,8 +9,7 @@ import {
     deleteSearchedData,
     setKeyword,
     updatePage,
-    addCountries,
-    addSearchedData
+
 } from 'modules/country';
 
 function useCountry() {
@@ -51,15 +50,13 @@ function useCountry() {
     //   검색했을 때
     const onSearch = ({ search }) => {
         // 검색어 없이 다시 검색하면 전체 데이터를 보여준다. searchedData는 null로 초기화한다
-        console.log(data, searchedData)
-        console.log(search)
+
         if (!search) {
-            console.log(search)
             dispatch(updatePage(8));
             dispatch(setSearchedData(null));
         } else if (keyword && data) {
-            console.log(keyword, data)
-                // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다
+
+            // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다
             const newCountries = data.filter(country => country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
             dispatch(setSearchedData(newCountries));
             dispatch(updatePage(8));
@@ -101,8 +98,8 @@ function useCountry() {
 
     //   정렬 함수
     const onSort = keyword => {
-        console.log(searchedData, data)
-            //   초기 데이터일 때
+
+        //   초기 데이터일 때
         if (!searchedData && data) {
             const newCountries = data.sort(compareBy(keyword));
             handleUpdateAscending(keyword, newCountries);
@@ -117,8 +114,7 @@ function useCountry() {
     };
 
     const onDelete = name => {
-        console.log(searchedData, data)
-            //   초기 데이터일 때
+        //   초기 데이터일 때
         if (!searchedData && data) {
             dispatch(deleteInitialData(name));
         }
