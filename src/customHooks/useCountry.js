@@ -75,10 +75,14 @@ function useCountry() {
                 let aa = +a[keyword][0];
                 let bb = +b[keyword][0];
                 if (isNaN(aa)) {
-                    aa = a[keyword][0].charCodeAt(0) + 9999;
+                    console.log('not number', a[keyword][0])
+                    aa = +a[keyword][0].replace(" ", "");
+                    // console.log(isNaN(parseInt(a[keyword][0])))
+                    // aa = a[keyword][0].charCodeAt(0) + 9999;
                 }
                 if (isNaN(bb)) {
-                    bb = b[keyword][0].charCodeAt(0) + 9999;
+                    // bb = b[keyword][0].charCodeAt(0) + 9999;
+                    bb = +b[keyword][0].replace(" ", "");
                 }
                 if (aa < bb) return isAscending ? -1 : 1;
                 if (aa > bb) return isAscending ? 1 : -1;
