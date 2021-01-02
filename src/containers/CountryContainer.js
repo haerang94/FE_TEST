@@ -6,7 +6,6 @@ import Countries from 'components/Countries';
 const CountryContainer = () => {
   const { data, loading, error, page, searchedData, ascendingStatus, onSearch, onSort, onDelete, onAdd } = useCountry();
   useInfiniteScroll();
-
   const slicedData = searchedData ? searchedData.slice(0, page) : data ? data.slice(0, page) : [];
 
   if (error) return <div>에러 발생</div>;
