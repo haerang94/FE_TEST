@@ -84,7 +84,7 @@ const initialState = {
     countries: {
         loading: false,
         data: null,
-        error: null,
+        error: false,
     },
     searchedData: {
         data: null

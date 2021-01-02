@@ -37,11 +37,13 @@ function useCountry() {
         if (!search) {
             dispatch(updatePage(8));
             dispatch(setSearchedData(null));
-        } else if (keyword) {
+        } else if (keyword && data) {
             // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다
+
             const newCountries = data.filter(country => country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
             dispatch(setSearchedData(newCountries));
             dispatch(updatePage(8));
+
 
         }
         dispatch(setKeyword(search));

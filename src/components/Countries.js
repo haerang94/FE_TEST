@@ -44,7 +44,7 @@ const Countries = ({ data, onSearch, onSort, ascendingStatus, onDelete, onAdd, l
       <AddForm onAdd={onAdd}></AddForm>
       <SearchForm onSearch={onSearch} />
       <SortingForm onSort={onSort} ascendingStatus={ascendingStatus} />
-      {!loading && (
+      {!loading && data && (
         <CardContainer>
           {data.map(country => (
             <Country key={country.name} country={country} onDelete={onDelete} />

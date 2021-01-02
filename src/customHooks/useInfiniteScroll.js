@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { toggleFetching, updatePage, fetchingNextData } from 'modules/country';
+import { fetchingNextData } from 'modules/country';
 
 function useInfiniteScroll() {
 
@@ -11,7 +11,6 @@ function useInfiniteScroll() {
     }
 
     const handleScroll = () => {
-        console.log('handleScroll')
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
@@ -20,7 +19,7 @@ function useInfiniteScroll() {
             fetchMoreData();
         }
     };
-    console.log('fetching', fetching)
+
     useEffect(() => {
         // scroll event listener 등록
         window.addEventListener("scroll", handleScroll);
