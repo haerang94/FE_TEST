@@ -105,14 +105,12 @@ function useCountry() {
 
         //   초기 데이터일 때
         if (!searchedData && data) {
-            console.log('111')
             const newCountries = data.sort(compareBy(keyword));
             handleUpdateAscending(keyword);
             dispatch(setCountries(newCountries));
         }
         // 검색해서 나온 데이터일 때
         if (searchedData) {
-            console.log('22')
             const newCountries = searchedData.sort(compareBy(keyword));
             handleUpdateAscending(keyword);
             dispatch(setSearchedData(newCountries))
@@ -127,6 +125,7 @@ function useCountry() {
         // 검색해서 나온 데이터일 때
         if (searchedData) {
             dispatch(deleteSearchedData(name));
+            dispatch(deleteInitialData(name));
         }
     }, [dispatch, deleteInitialData, deleteSearchedData, data, searchedData]);
 
