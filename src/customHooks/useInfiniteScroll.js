@@ -1,16 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { fetchingNextData } from 'modules/country';
 
-function useInfiniteScroll() {
+const useInfiniteScroll = () => {
 
     const { fetching, page } = useSelector(state => state.country);
     const dispatch = useDispatch();
-    const fetchMoreData = () => {
+    const fetchMoreData = useCallback(() => {
         dispatch(fetchingNextData(page + 8))
-    }
+    }, [dispatch, fetchingNextData, page]);
 
-    const handleScroll = () => {
+    const handleScroll = useCallback(() => {
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
@@ -18,7 +18,7 @@ function useInfiniteScroll() {
             // 페이지 끝에 도달하면 추가 데이터를 받아온다
             fetchMoreData();
         }
-    };
+    }, [fetchMoreData, fetching]);
 
     useEffect(() => {
         // scroll event listener 등록
