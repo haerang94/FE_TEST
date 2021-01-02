@@ -3,17 +3,17 @@ import useCountry from 'customHooks/useCountry';
 import Countries from 'components/Countries';
 
 const CountryContainer = () => {
-  const { data, loading, error, searchedData, ascendingStatus, onSearch, onSort, onDelete, onAdd } = useCountry();
+  const { data, loading, error, page, searchedData, ascendingStatus, onSearch, onSort, onDelete, onAdd } = useCountry();
+
+  const slicedData = searchedData ? searchedData.slice(0, page) : data ? data.slice(0, page) : null;
 
   if (error) return <div>에러 발생</div>;
-
   return (
     <div>
       {loading && !data && <div>로딩 중</div>}
       {data && (
         <Countries
-          data={data}
-          searchedData={searchedData}
+          data={slicedData}
           onSearch={onSearch}
           onSort={onSort}
           ascendingStatus={ascendingStatus}

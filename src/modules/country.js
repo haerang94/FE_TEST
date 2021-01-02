@@ -10,6 +10,8 @@ const SET_SEARCHED_DATA = "SET_SEARCHED_DATA";
 const DELETE_INITIAL_DATA = "DELETE_INITIAL_DATA";
 const DELETE_SEARCHED_DATA = "DELETE_SEARCHED_DATA";
 const SET_KEYWORD = "SET_KEYWORD";
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+const UPDATE_PAGE = "UPDATE_PAGE";
 
 // 정렬 관련 actions
 const SET_ASCENDING_STATUS = "SET_ASCENDING_STATUS";
@@ -25,6 +27,8 @@ export const getCountries = () => async(dispatch) => {
         dispatch({ type: GET_COUNTRIES_ERROR, error: e });
     }
 };
+
+export const toggleFetching = () => ({ type: TOGGLE_FETCHING });
 
 export const setCountries = newCountries => ({
     type: SET_COUNTRIES,
@@ -57,6 +61,8 @@ export const setAscendingStatus = newAscendingStatus => ({
 })
 
 
+
+
 //  초기 countries 상태
 const initialState = {
     countries: {
@@ -74,7 +80,9 @@ const initialState = {
         capital: true,
         region: true,
     },
-    keyword: null
+    keyword: null,
+    page: 8,
+    fetching: false
 };
 //  country reducer
 export default function country(state = initialState, action) {
@@ -145,6 +153,11 @@ export default function country(state = initialState, action) {
             return {
                 ...state,
                 keyword: action.keyword
+            }
+        case TOGGLE_FETCHING:
+            return {
+                ...state,
+                fetching: !state.fetching
             }
 
         default:

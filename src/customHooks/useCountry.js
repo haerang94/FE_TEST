@@ -13,7 +13,7 @@ import {
 function useCountry() {
 
     // 정렬 상태
-    const { ascendingStatus } = useSelector(state => state.country);
+    const { ascendingStatus, fetching, page } = useSelector(state => state.country);
     // 국가 정보
     const { data, loading, error } = useSelector(state => state.country.countries);
     // 검색 정보 (검색 부분일치 필터링된 국가 정보)
@@ -116,6 +116,7 @@ function useCountry() {
         data,
         loading,
         error,
+        page,
         searchedData,
         ascendingStatus,
         onSearch,

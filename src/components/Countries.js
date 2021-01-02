@@ -35,21 +35,21 @@ const CardContainer = styled.div`
   padding: 20px;
 `;
 
-const Countries = ({ data, searchedData, onSearch, onSort, ascendingStatus, onDelete, onAdd }) => (
-  <Wrapper>
-    <Nav> FE TEST </Nav>
-    <AddForm onAdd={onAdd}></AddForm>
-    <SearchForm onSearch={onSearch} />
-    <SortingForm onSort={onSort} ascendingStatus={ascendingStatus} />
-    <CardContainer>
-      {!searchedData &&
-        data &&
-        data.map(country => <Country key={country.name} country={country} onDelete={onDelete} />)}
-      {searchedData &&
-        searchedData.map(country => <Country key={country.name} country={country} onDelete={onDelete} />)}
-    </CardContainer>
-  </Wrapper>
-);
+const Countries = ({ data, onSearch, onSort, ascendingStatus, onDelete, onAdd }) => {
+  return (
+    <Wrapper>
+      <Nav> FE TEST </Nav>
+      <AddForm onAdd={onAdd}></AddForm>
+      <SearchForm onSearch={onSearch} />
+      <SortingForm onSort={onSort} ascendingStatus={ascendingStatus} />
+      <CardContainer>
+        {data.map(country => (
+          <Country key={country.name} country={country} onDelete={onDelete} />
+        ))}
+      </CardContainer>
+    </Wrapper>
+  );
+};
 
 Countries.defaultProps = {
   countries: [],
