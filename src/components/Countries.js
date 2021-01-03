@@ -33,8 +33,9 @@ const CardWrapper = styled.div`
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  min-height: 500px;
+  min-height: 400px;
   justify-content: center;
+  margin-bottom: 20px;
 `;
 
 const CardContainer = styled.div`
