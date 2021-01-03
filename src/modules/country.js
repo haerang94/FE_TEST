@@ -120,7 +120,7 @@ const initialState = {
     // 현재 데이터를 불러오는 상태인지
     fetching: false
 };
-//  country reducer
+//  country reducer 리듀서
 export default function country(state = initialState, action) {
     switch (action.type) {
         case GET_COUNTRIES:

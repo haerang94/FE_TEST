@@ -1,4 +1,4 @@
-<p align="center"><img src="src/fe_test.gif" width="400" height="400" alt="preview"/></p>
+<p align="center"><img src="src/fe_test.gif" width="500" height="350" alt="preview"/></p>
 
 ### 실행
 
@@ -13,8 +13,6 @@
 - customHooks: 무한 스크롤 처리 함수, redux 데이터 처리 함수
 
 ### 폼 정보 form information
-
-npm
 
 - AddForm: 나라 정보 추가 관련 폼
 - SearchForm: 검색 폼 (lodash debounce 함수 활용)

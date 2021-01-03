@@ -46,8 +46,10 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 );
 
 const AddForm = ({ handleSubmit, onAdd }) => {
+  // 추가하고 폼 비우기
   const handleAdd = useCallback(
     (value, dispatch) => {
+      // 새로운 값 추가
       onAdd(value);
       dispatch(reset('addForm'));
     },

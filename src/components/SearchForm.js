@@ -21,7 +21,7 @@ const SearchForm = ({ handleSubmit, onSearch }) => {
     const debouncedChange = debounce(value => {
         onSearch({ search: value });
     }, 200);
-
+    // 검색 폼 아무것도 입력하지 않을 때에는 무시
     const handleChange = (e, newValue) => {
         if (!newValue) return;
         debouncedChange(newValue);
