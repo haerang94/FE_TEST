@@ -55,7 +55,7 @@ function useCountry() {
         try {
             // 검색어가 포함되어 있으면 true, 아니면 false
             // 중간 공백은 검색에 영향안주도록 삭제
-            if (field.replace(/(\s*)/g, "").toLowerCase().indexOf(search.toLowerCase()) !== -1) return true;
+            if (field.replace(/(\s*)/g, "").toLowerCase().indexOf(search.replace(/(\s*)/g, "").toLowerCase()) !== -1) return true;
             return false;
         } catch (e) {
             console.log('search error', field)
