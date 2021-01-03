@@ -44,32 +44,33 @@ function useCountry() {
         }
     }, [data, dispatch, setCountries, keyword, setSearchedData, searchedData]);
 
-    const hasWord = useCallback((search, card) => {
+    // 통합검색 함수 (search: 검색어, card:검색되는 data필드)
+    const hasWord = useCallback((search, field) => {
         try {
-            if (card.toLowerCase().indexOf(search.toLowerCase()) !== -1) return true;
+            // 검색어가 포함되어 있으면 true, 아니면 false
+            if (field.toLowerCase().indexOf(search.toLowerCase()) !== -1) return true;
             return false;
         } catch (e) {
-            console.log('search error', card)
+            console.log('search error', field)
         }
     }, [])
 
     //   검색했을 때
     const onSearch = useCallback(({ search }) => {
         // 검색어 없이 다시 검색하면 전체 데이터를 보여준다. searchedData는 null로 초기화한다
-
         if (!search) {
             dispatch(updatePage(8));
             dispatch(setSearchedData(null));
         } else if (keyword && data) {
 
-            // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다
+            // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다 (통합검색)
             const newCountries = data.filter(country =>
                 hasWord(search, country.name) ||
                 hasWord(search, country.alpha2Code) ||
                 hasWord(search, country.callingCodes[0]) ||
                 hasWord(search, country.capital) ||
                 hasWord(search, country.region));
-
+            // 검색 필터링 데이터 업데이트, 처음부터 보여준다
             dispatch(setSearchedData(newCountries));
             dispatch(updatePage(8));
         } else {
