@@ -20,7 +20,7 @@ const Card = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 300px;
-  margin: 10px auto;
+  margin: 10px;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 2px 2px 5px #c6fced;
@@ -28,6 +28,7 @@ const Card = styled.div`
     box-shadow: 2px 2px 5px #aca8ff, -1px -1px 3px #c6fced;
     cursor: pointer;
   }
+  height: 200px;
 `;
 
 const Content = styled.div`
@@ -46,6 +47,7 @@ const Content = styled.div`
 `;
 
 const Country = ({ country, onDelete }) => {
+  // 중복되지 않는 다는 가정 하에 이름 기반 삭제, 이름 중복은 validation 검사 안해줌
   const handleDelete = useCallback(() => {
     onDelete(country.name);
   }, []);
@@ -54,12 +56,10 @@ const Country = ({ country, onDelete }) => {
     <Card key={country.name}>
       <CloseBtn onClick={handleDelete} />
       <Content>
-        <h2> 이름 </h2>
-        <li> {country.name} </li>
+        <h2> 이름 </h2> <li> {country.name} </li>
       </Content>
       <Content>
-        <h2> 코드 </h2>
-        <li> {country.alpha2Code} </li>
+        <h2> 코드 </h2> <li> {country.alpha2Code} </li>
       </Content>
       <Content>
         <h2> 국가 전화번호 </h2> <li> {country.callingCodes && country.callingCodes[0]} </li>

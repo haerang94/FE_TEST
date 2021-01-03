@@ -26,7 +26,7 @@ const SortButton = styled.button`
     cursor: pointer;
   }
 `;
-
+//  정렬 버튼 폼
 const SortingForm = ({ onSort, ascendingStatus }) => {
   const { name, alpha2Code, callingCodes, capital, region } = ascendingStatus;
 

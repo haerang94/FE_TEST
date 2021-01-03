@@ -28,11 +28,22 @@ const Nav = styled.nav`
   background: linear-gradient(to right, #7579e7, #b9fffc);
 `;
 
+const CardWrapper = styled.div`
+  width: 90%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 500px;
+  justify-content: center;
+`;
+
 const CardContainer = styled.div`
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  min-width: 400px;
   flex-wrap: wrap;
   padding: 20px;
 `;
@@ -40,18 +51,18 @@ const CardContainer = styled.div`
 const Countries = ({ data, onSearch, onSort, ascendingStatus, onDelete, onAdd, loading }) => {
   return (
     <Wrapper>
-      <Nav> FE TEST </Nav>
-      <AddForm onAdd={onAdd}></AddForm>
-      <SearchForm onSearch={onSearch} />
+      <Nav> FE TEST </Nav> <AddForm onAdd={onAdd}> </AddForm> <SearchForm onSearch={onSearch} />
       <SortingForm onSort={onSort} ascendingStatus={ascendingStatus} />
       {!loading && data && (
-        <CardContainer>
-          {data.map((country, idx) => (
-            <Country key={`${country.name}-${idx}`} country={country} onDelete={onDelete} />
-          ))}
-        </CardContainer>
+        <CardWrapper>
+          <CardContainer>
+            {data.map((country, idx) => (
+              <Country key={`${country.name}-${idx}`} country={country} onDelete={onDelete} />
+            ))}
+          </CardContainer>
+        </CardWrapper>
       )}
-      {loading && <CardContainer>로딩중...</CardContainer>}
+      {loading && <CardContainer> 로딩중... </CardContainer>}
     </Wrapper>
   );
 };
