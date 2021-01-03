@@ -35,11 +35,13 @@ export const getCountries = () => async(dispatch) => {
     }
 };
 
+// 새로운 데이터로  set
 export const setCountries = newCountries => ({
     type: SET_COUNTRIES,
     newCountries
 });
 
+// 특정 이름의 데이터 삭제 
 export const deleteInitialData = (name) => ({
     type: DELETE_INITIAL_DATA,
     name
