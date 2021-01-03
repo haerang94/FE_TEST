@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
-import { reduxForm, reset, change } from 'redux-form';
+import { reduxForm, reset } from 'redux-form';
 import styled from 'styled-components';
-import { InputField, Button } from 'components/sharedComponents';
+import { Button, InputField } from 'components/sharedComponents';
 import { debounce } from 'lodash';
 
 const Form = styled.form`

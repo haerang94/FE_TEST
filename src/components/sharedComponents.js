@@ -2,7 +2,23 @@ import styled from 'styled-components';
 import { Field } from 'redux-form';
 
 const InputField = styled(Field)
-`
+` 
+  border: none;
+  border-bottom: 1px solid #98acf8;
+  width: 260px;
+  padding: 7px;
+  color: gray;
+
+`;
+
+
+const InputWrapper = styled.div `
+  display: flex;
+  flex-direction: column;
+  
+`;
+
+const Input = styled.input `
   border: none;
   border-bottom: 1px solid #98acf8;
   width: 260px;
@@ -26,4 +42,4 @@ const Button = styled.button `
     cursor: pointer;
   }
 `;
-export { InputField, Button };
+export { InputField, Button, InputWrapper, Input };
