@@ -54,24 +54,21 @@ const Country = ({ country, onDelete }) => {
     <Card key={country.name}>
       <CloseBtn onClick={handleDelete} />
       <Content>
-        <h2>이름</h2>
+        <h2> 이름 </h2>
         <li> {country.name} </li>
       </Content>
       <Content>
-        <h2>코드</h2>
+        <h2> 코드 </h2>
         <li> {country.alpha2Code} </li>
       </Content>
       <Content>
-        <h2>국가 전화번호</h2>
-        <li> {country.callingCodes[0]} </li>
+        <h2> 국가 전화번호 </h2> <li> {country.callingCodes && country.callingCodes[0]} </li>
       </Content>
       <Content>
-        <h2>수도</h2>
-        <li> {country.capital} </li>
+        <h2> 수도 </h2> <li> {country.capital} </li>
       </Content>
       <Content>
-        <h2>대륙</h2>
-        <li> {country.region} </li>
+        <h2> 대륙 </h2> <li> {country.region} </li>
       </Content>
     </Card>
   );

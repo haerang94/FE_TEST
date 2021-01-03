@@ -32,13 +32,13 @@ const SortingForm = ({ onSort, ascendingStatus }) => {
 
   return (
     <SortContainer>
-      <SortButton onClick={() => onSort('name')}> 이름 {name ? ' (오름차순)' : '(내림차순)'} </SortButton>{' '}
-      <SortButton onClick={() => onSort('alpha2Code')}> 코드 {alpha2Code ? ' (오름차순)' : '(내림차순)'} </SortButton>{' '}
+      <SortButton onClick={() => onSort('name')}> 이름 {name ? ' (오름차순)' : '(내림차순)'} </SortButton>
+      <SortButton onClick={() => onSort('alpha2Code')}> 코드 {alpha2Code ? ' (오름차순)' : '(내림차순)'} </SortButton>
       <SortButton onClick={() => onSort('callingCodes')}>
-        국가 전화번호 {callingCodes ? ' (오름차순)' : '(내림차순)'}{' '}
-      </SortButton>{' '}
-      <SortButton onClick={() => onSort('capital')}> 수도 {capital ? ' (오름차순)' : '(내림차순)'} </SortButton>{' '}
-      <SortButton onClick={() => onSort('region')}> 대륙 {region ? ' (오름차순)' : '(내림차순)'} </SortButton>{' '}
+        국가 전화번호 {callingCodes ? ' (오름차순)' : '(내림차순)'}
+      </SortButton>
+      <SortButton onClick={() => onSort('capital')}> 수도 {capital ? ' (오름차순)' : '(내림차순)'} </SortButton>
+      <SortButton onClick={() => onSort('region')}> 대륙 {region ? ' (오름차순)' : '(내림차순)'} </SortButton>
     </SortContainer>
   );
 };

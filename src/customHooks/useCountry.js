@@ -32,15 +32,20 @@ function useCountry() {
 
     const onAdd = useCallback((value) => {
         //   초기 데이터일 때
-        const newCountries = data;
-        newCountries.unshift(value);
-        dispatch(setCountries(newCountries));
-        if (searchedData) {
-            if (value.name.toLowerCase().indexOf(keyword) !== -1) {
-                const newCountries = searchedData;
-                newCountries.unshift(value);
-                dispatch(setSearchedData(newCountries));
+        console.log(value)
+        try {
+            const newCountries = data;
+            newCountries.unshift(value);
+            dispatch(setCountries(newCountries));
+            if (searchedData) {
+                if (value.name.toLowerCase().indexOf(keyword) !== -1) {
+                    const newCountries = searchedData;
+                    newCountries.unshift(value);
+                    dispatch(setSearchedData(newCountries));
+                }
             }
+        } catch (e) {
+            console.log(value)
         }
     }, [data, dispatch, setCountries, keyword, setSearchedData, searchedData]);
 
@@ -48,7 +53,8 @@ function useCountry() {
     const hasWord = useCallback((search, field) => {
         try {
             // 검색어가 포함되어 있으면 true, 아니면 false
-            if (field.toLowerCase().indexOf(search.toLowerCase()) !== -1) return true;
+            // 중간 공백은 검색에 영향안주도록 삭제
+            if (field.replace(/(\s*)/g, "").toLowerCase().indexOf(search.toLowerCase()) !== -1) return true;
             return false;
         } catch (e) {
             console.log('search error', field)
@@ -61,13 +67,14 @@ function useCountry() {
         if (!search) {
             dispatch(updatePage(8));
             dispatch(setSearchedData(null));
-        } else if (keyword && data) {
-
-            // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다 (통합검색)
+            // 공백으로만 검색했을 때 아무것도 안뜨는것 방지 (모든 문자에 공백제거)
+        } else if (keyword && keyword.replace(/(\s*)/g, "") !== '' && data) {
+            console.log('keyword', keyword)
+                // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다 (통합검색)
             const newCountries = data.filter(country =>
                 hasWord(search, country.name) ||
                 hasWord(search, country.alpha2Code) ||
-                hasWord(search, country.callingCodes[0]) ||
+                (country.callingCodes && hasWord(search, country.callingCodes[0])) ||
                 hasWord(search, country.capital) ||
                 hasWord(search, country.region));
             // 검색 필터링 데이터 업데이트, 처음부터 보여준다
@@ -88,12 +95,14 @@ function useCountry() {
             return (a, b) => {
                 let aa = +a[keyword][0];
                 let bb = +b[keyword][0];
+                // 중간에 공백 들어간 문자 숫자로 변환시킨다
                 if (isNaN(aa)) {
                     aa = +a[keyword][0].replace(" ", "");
                 }
                 if (isNaN(bb)) {
                     bb = +b[keyword][0].replace(" ", "");
                 }
+                // 현재 각 필드가 내림/오름 차순 여부에 따라 다르게 정렬
                 if (aa < bb) return isAscending ? -1 : 1;
                 if (aa > bb) return isAscending ? 1 : -1;
                 return 0;
@@ -130,6 +139,7 @@ function useCountry() {
             dispatch(setSearchedData(newCountries))
         }
     }, [dispatch, searchedData, data, keyword, handleUpdateAscending, setCountries, searchedData, setSearchedData]);
+
 
     const onDelete = useCallback(name => {
         //   초기 데이터일 때
