@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { reduxForm, reset, Field } from 'redux-form';
-import { Button, InputWrapper, Input, InputField } from 'components/sharedComponents';
+import { reduxForm, reset } from 'redux-form';
+import { Button, InputWrapper, Input, InputField, Span } from 'components/sharedComponents';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -20,8 +20,20 @@ const Form = styled.form`
 
 const validate = values => {
   const errors = {};
+  if (!values.name) {
+    errors.name = '이름을 입력해주세요.';
+  }
+  if (!values.alpha2Code) {
+    errors.alpha2Code = '코드를 입력해주세요.';
+  }
   if (!values.callingCodes) {
-    errors.callingCodes = '코드를 입력해주세요.';
+    errors.callingCodes = '국가전화번호를 입력해주세요.';
+  }
+  if (!values.capital) {
+    errors.capital = '수도를 입력해주세요';
+  }
+  if (!values.region) {
+    errors.region = '대륙을 입력해주세요.';
   }
   return errors;
 };
@@ -29,7 +41,7 @@ const validate = values => {
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <InputWrapper>
     <Input {...input} placeholder={label} type={type} />
-    {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    {touched && ((error && <Span>{error}</Span>) || (warning && <Span>{warning}</Span>))}
   </InputWrapper>
 );
 

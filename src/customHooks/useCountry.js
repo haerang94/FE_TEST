@@ -32,10 +32,11 @@ function useCountry() {
 
     const onAdd = useCallback((value) => {
         //   초기 데이터일 때
-        console.log(value)
+
         try {
+            const newValue = {...value, callingCodes: [value.callingCodes] };
             const newCountries = data;
-            newCountries.unshift(value);
+            newCountries.unshift(newValue);
             dispatch(setCountries(newCountries));
             if (searchedData) {
                 if (value.name.toLowerCase().indexOf(keyword) !== -1) {

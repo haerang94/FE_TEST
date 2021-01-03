@@ -42,4 +42,12 @@ const Button = styled.button `
     cursor: pointer;
   }
 `;
-export { InputField, Button, InputWrapper, Input };
+
+const Span = styled.span `
+  font-size:${props=>props.theme.size.sm};
+  color:red;
+  margin-top:3px;
+
+`;
+
+export { InputField, Button, InputWrapper, Input, Span };
