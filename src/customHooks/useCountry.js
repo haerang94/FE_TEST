@@ -70,8 +70,8 @@ function useCountry() {
             dispatch(setSearchedData(null));
             // 공백으로만 검색했을 때 아무것도 안뜨는것 방지 (모든 문자에 공백제거)
         } else if (keyword && keyword.replace(/(\s*)/g, "") !== '' && data) {
-            console.log('keyword', keyword)
-                // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다 (통합검색)
+
+            // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다 (통합검색)
             const newCountries = data.filter(country =>
                 hasWord(search, country.name) ||
                 hasWord(search, country.alpha2Code) ||

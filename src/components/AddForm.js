@@ -17,7 +17,7 @@ const Form = styled.form`
     margin-bottom: 5px;
 
 `;
-
+//  폼 validation 함수
 const validate = values => {
   const errors = {};
   if (!values.name) {
