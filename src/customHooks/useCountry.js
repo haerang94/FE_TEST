@@ -44,7 +44,14 @@ function useCountry() {
         }
     }, [data, dispatch, setCountries, keyword, setSearchedData, searchedData]);
 
-
+    const hasWord = useCallback((search, card) => {
+        try {
+            if (card.toLowerCase().indexOf(search.toLowerCase()) !== -1) return true;
+            return false;
+        } catch (e) {
+            console.log('search error', card)
+        }
+    }, [])
 
     //   검색했을 때
     const onSearch = useCallback(({ search }) => {
@@ -56,7 +63,13 @@ function useCountry() {
         } else if (keyword && data) {
 
             // 대소문자 구분없이 나라 검색해서 searchedData에 저장한다
-            const newCountries = data.filter(country => country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
+            const newCountries = data.filter(country =>
+                hasWord(search, country.name) ||
+                hasWord(search, country.alpha2Code) ||
+                hasWord(search, country.callingCodes[0]) ||
+                hasWord(search, country.capital) ||
+                hasWord(search, country.region));
+
             dispatch(setSearchedData(newCountries));
             dispatch(updatePage(8));
         } else {
