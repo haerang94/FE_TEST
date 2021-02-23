@@ -1,5 +1,16 @@
 <p align="center"><img src="src/fe_test.gif" width="500" height="350" alt="preview"/></p>
 
+### 기능
++ webpack으로 react 환경 설정
++ 각 필드별 오름차순, 내림차순 정렬됨 
++ 검색창으로 통합 검색됨(부분일치, 대소문자 구분x)
++ 각 데이터는 삭제 가능함
++ 새로운 나라 정보 추가 가능함
++ Redux로 모든 상태를 저장함
++ 쓰로틀링으로 무한 스크롤 적용함
++ 검색은 디바운싱 적용함
+
+
 ### 실행
 
 - npm install
