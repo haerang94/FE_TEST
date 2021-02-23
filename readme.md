@@ -1,6 +1,13 @@
 <p align="center"><img src="src/fe_test.gif" width="500" height="350" alt="preview"/></p>
 
-### 기능
+### Skills
+- react
+- redux 
+- redux-form
+- styled-components
+- lodash (debouncing에 적용)
+
+### 구현한 기능
 + webpack으로 react 환경 설정
 + 각 필드별 오름차순, 내림차순 정렬됨 
 + 검색창으로 통합 검색됨(부분일치, 대소문자 구분x)
@@ -9,6 +16,7 @@
 + Redux로 모든 상태를 저장함
 + 쓰로틀링으로 무한 스크롤 적용함
 + 검색은 디바운싱 적용함
++ 입력하지 않은 값에 대한 validation구현
 
 
 ### 실행
